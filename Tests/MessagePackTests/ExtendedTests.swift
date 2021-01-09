@@ -37,7 +37,7 @@ class ExtendedTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, value)
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackFixext2() {
@@ -52,7 +52,7 @@ class ExtendedTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, value)
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackFixext4() {
@@ -67,7 +67,7 @@ class ExtendedTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, value)
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackFixext8() {
@@ -82,7 +82,7 @@ class ExtendedTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, value)
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackFixext16() {
@@ -97,7 +97,7 @@ class ExtendedTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, value)
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackExt8() {
@@ -112,7 +112,7 @@ class ExtendedTests: XCTestCase {
 
         let unpacked = try? unpack(Data([0xc7, 0x07, 0x05]) + payload)
         XCTAssertEqual(unpacked?.value, value)
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackExt16() {
@@ -127,7 +127,7 @@ class ExtendedTests: XCTestCase {
 
         let unpacked = try? unpack(Data([0xc8, 0x01, 0x00, 0x05]) + payload)
         XCTAssertEqual(unpacked?.value, value)
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackExt32() {
@@ -142,7 +142,7 @@ class ExtendedTests: XCTestCase {
 
         let unpacked = try? unpack(Data([0xc9, 0x00, 0x01, 0x00, 0x00, 0x05]) + payload)
         XCTAssertEqual(unpacked?.value, value)
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testUnpackInsufficientData() {

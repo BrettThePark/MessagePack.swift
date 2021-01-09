@@ -31,7 +31,7 @@ class BinaryTests: XCTestCase {
     func testUnpack() {
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .binary(payload))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackBin16() {
@@ -46,7 +46,7 @@ class BinaryTests: XCTestCase {
 
         let unpacked = try? unpack(data)
         XCTAssertEqual(unpacked?.value, .binary(value))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackBin32() {
@@ -61,7 +61,7 @@ class BinaryTests: XCTestCase {
 
         let unpacked = try? unpack(data)
         XCTAssertEqual(unpacked?.value, .binary(value))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackBin64() {
@@ -76,7 +76,7 @@ class BinaryTests: XCTestCase {
 
         let unpacked = try? unpack(data)
         XCTAssertEqual(unpacked?.value, .binary(value))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testUnpackInsufficientData() {
@@ -106,7 +106,7 @@ class BinaryTests: XCTestCase {
 
         let unpacked = try? unpack(packed, compatibility: true)
         XCTAssertEqual(unpacked?.value, .binary(data))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testUnpackStr8WithCompatibility() {
@@ -115,7 +115,7 @@ class BinaryTests: XCTestCase {
 
         let unpacked = try? unpack(packed, compatibility: true)
         XCTAssertEqual(unpacked?.value, .binary(data))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testUnpackStr16WithCompatibility() {
@@ -124,7 +124,7 @@ class BinaryTests: XCTestCase {
 
         let unpacked = try? unpack(packed, compatibility: true)
         XCTAssertEqual(unpacked?.value, .binary(data))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testUnpackStr32WithCompatibility() {
@@ -133,6 +133,6 @@ class BinaryTests: XCTestCase {
 
         let unpacked = try? unpack(packed, compatibility: true)
         XCTAssertEqual(unpacked?.value, MessagePackValue.binary(data))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 }

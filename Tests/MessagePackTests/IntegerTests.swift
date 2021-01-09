@@ -50,11 +50,11 @@ class IntegerTests: XCTestCase {
     func testUnpackNegFixint() {
         let unpacked1 = try? unpack(Data([0xff]))
         XCTAssertEqual(unpacked1?.value, .int(-1))
-        XCTAssertEqual(unpacked1?.remainder.count, 0)
+        XCTAssertEqual(unpacked1?.subdata.count, 0)
 
         let unpacked2 = try? unpack(Data([0xe0]))
         XCTAssertEqual(unpacked2?.value, .int(-32))
-        XCTAssertEqual(unpacked2?.remainder.count, 0)
+        XCTAssertEqual(unpacked2?.subdata.count, 0)
     }
 
     func testPackPosFixintSigned() {
@@ -64,7 +64,7 @@ class IntegerTests: XCTestCase {
     func testUnpackPosFixintSigned() {
         let unpacked = try? unpack(Data([0x01]))
         XCTAssertEqual(unpacked?.value, .int(1))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackPosFixintUnsigned() {
@@ -74,7 +74,7 @@ class IntegerTests: XCTestCase {
     func testUnpackPosFixintUnsigned() {
         let unpacked = try? unpack(Data([0x2a]))
         XCTAssertEqual(unpacked?.value, .uint(42))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackUInt8() {
@@ -84,7 +84,7 @@ class IntegerTests: XCTestCase {
     func testUnpackUInt8() {
         let unpacked = try? unpack(Data([0xcc, 0xff]))
         XCTAssertEqual(unpacked?.value, .uint(0xff))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackUInt16() {
@@ -94,7 +94,7 @@ class IntegerTests: XCTestCase {
     func testUnpackUInt16() {
         let unpacked = try? unpack(Data([0xcd, 0xff, 0xff]))
         XCTAssertEqual(unpacked?.value, .uint(0xffff))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackUInt32() {
@@ -104,7 +104,7 @@ class IntegerTests: XCTestCase {
     func testUnpackUInt32() {
         let unpacked = try? unpack(Data([0xce, 0xff, 0xff, 0xff, 0xff]))
         XCTAssertEqual(unpacked?.value, .uint(0xffff_ffff))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackUInt64() {
@@ -114,7 +114,7 @@ class IntegerTests: XCTestCase {
     func testUnpackUInt64() {
         let unpacked = try? unpack(Data([0xcf, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff]))
         XCTAssertEqual(unpacked?.value, .uint(0xffff_ffff_ffff_ffff))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackInt8() {
@@ -124,7 +124,7 @@ class IntegerTests: XCTestCase {
     func testUnpackInt8() {
         let unpacked = try? unpack(Data([0xd0, 0x81]))
         XCTAssertEqual(unpacked?.value, .int(-0x7f))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackInt16() {
@@ -134,7 +134,7 @@ class IntegerTests: XCTestCase {
     func testUnpackInt16() {
         let unpacked = try? unpack(Data([0xd1, 0x80, 0x01]))
         XCTAssertEqual(unpacked?.value, .int(-0x7fff))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackInt32() {
@@ -144,7 +144,7 @@ class IntegerTests: XCTestCase {
     func testUnpackInt32() {
         let unpacked = try? unpack(Data([0xd2, 0xff, 0xff, 0x00, 0x00]))
         XCTAssertEqual(unpacked?.value, .int(-0x1_0000))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackInt64() {
@@ -154,7 +154,7 @@ class IntegerTests: XCTestCase {
     func testUnpackInt64() {
         let unpacked = try? unpack(Data([0xd3, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00]))
         XCTAssertEqual(unpacked?.value, .int(-0x1_0000_0000))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testUnpackInsufficientData() {

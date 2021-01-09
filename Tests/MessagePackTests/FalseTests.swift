@@ -25,6 +25,6 @@ class FalseTests: XCTestCase {
     func testUnpack() {
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .bool(false))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 }

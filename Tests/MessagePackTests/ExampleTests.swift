@@ -26,11 +26,11 @@ class ExampleTests: XCTestCase {
     func testUnpack() {
         let unpacked1 = try? unpack(correctA)
         XCTAssertEqual(unpacked1?.value, example)
-        XCTAssertEqual(unpacked1?.remainder.count, 0)
+        XCTAssertEqual(unpacked1?.subdata.count, 0)
 
         let unpacked2 = try? unpack(correctB)
         XCTAssertEqual(unpacked2?.value, example)
-        XCTAssertEqual(unpacked2?.remainder.count, 0)
+        XCTAssertEqual(unpacked2?.subdata.count, 0)
     }
 
     func testUnpackInvalidData() {

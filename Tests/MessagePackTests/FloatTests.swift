@@ -19,6 +19,6 @@ class FloatTests: XCTestCase {
     func testUnpack() {
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .float(3.14))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 }

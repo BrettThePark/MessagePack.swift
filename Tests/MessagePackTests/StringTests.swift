@@ -41,7 +41,7 @@ class StringTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .string("Hello, world!"))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testUnpackFixstrEmpty() {
@@ -49,7 +49,7 @@ class StringTests: XCTestCase {
         
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .string(""))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
   
     func testPackStr8() {
@@ -63,7 +63,7 @@ class StringTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .string(string))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackStr16() {
@@ -77,7 +77,7 @@ class StringTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .string(string))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackStr32() {
@@ -91,6 +91,6 @@ class StringTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .string(string))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 }

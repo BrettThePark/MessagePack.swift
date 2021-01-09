@@ -31,7 +31,7 @@ class ArrayTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .array(value))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackArray16() {
@@ -46,6 +46,6 @@ class ArrayTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, .array(value))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 }

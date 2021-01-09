@@ -25,19 +25,19 @@ func testPackMap(_ count: Int, prefix: Data) {
 
     XCTAssertEqual(packed.subdata(in: 0 ..< prefix.count), prefix)
 
-    var remainder = RemainderData(packed.subdata(in: prefix.count ..< packed.count))
+    var subdata = SubData(packed.subdata(in: prefix.count ..< packed.count))
     var keys = Set<Int>()
     do {
         for _ in 0 ..< count {
             let value: MessagePackValue
-            (value, remainder) = try unpack(remainder)
+            (value, subdata) = try unpack(subdata)
             let key = Int(value.integerValue!)
 
             XCTAssertFalse(keys.contains(key))
             keys.insert(key)
 
             let nilValue: MessagePackValue
-            (nilValue, remainder) = try unpack(remainder)
+            (nilValue, subdata) = try unpack(subdata)
             XCTAssertEqual(nilValue, MessagePackValue.nil)
         }
     } catch {
@@ -74,7 +74,7 @@ class MapTests: XCTestCase {
 
         let unpacked = try? unpack(packed)
         XCTAssertEqual(unpacked?.value, MessagePackValue.map([.string("c"): .string("cookie")]))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 
     func testPackMap16() {
@@ -84,6 +84,6 @@ class MapTests: XCTestCase {
     func testUnpackMap16() {
         let unpacked = try? unpack(Data([0xde, 0x00, 0x10]) + payload(16))
         XCTAssertEqual(unpacked?.value, MessagePackValue.map(map(16)))
-        XCTAssertEqual(unpacked?.remainder.count, 0)
+        XCTAssertEqual(unpacked?.subdata.count, 0)
     }
 }
