@@ -25,19 +25,20 @@ func testPackMap(_ count: Int, prefix: Data) {
 
     XCTAssertEqual(packed.subdata(in: 0 ..< prefix.count), prefix)
 
-    var subdata = SubData(packed.subdata(in: prefix.count ..< packed.count))
+    var remainder = Subdata(packed) //, startIndex: prefix.count, endIndex: packed.count)
+    _ = remainder.popData(first: prefix.count)
     var keys = Set<Int>()
     do {
         for _ in 0 ..< count {
             let value: MessagePackValue
-            (value, subdata) = try unpack(subdata)
-            let key = Int(value.integerValue!)
+            (value, remainder) = try unpack(remainder)
+            let key = Int(value.int64Value!)
 
             XCTAssertFalse(keys.contains(key))
             keys.insert(key)
 
             let nilValue: MessagePackValue
-            (nilValue, subdata) = try unpack(subdata)
+            (nilValue, remainder) = try unpack(remainder)
             XCTAssertEqual(nilValue, MessagePackValue.nil)
         }
     } catch {
